@@ -1,0 +1,163 @@
+Port and Button Assignments.
+
+CAN Ports
+Port	Device			Description
+-----------------------------------------------------------------------------------
+1		CanTalon		Left front drive motor.
+2		CanTalon		Left rear drive motor.
+3		CanTalon		Right front drive motor.
+4		CanTalon		Right rear drive motor.
+5       CanVictor       Lower pickup motor.
+6       CanVictor       Upper pickup motor.
+7       CanVictor       Indexer motor.
+8       CanVictor       Left climber motor.
+9       CanTalon        Right climber motor.
+10      CanTalon    
+
+
+Shooter motor.
+
+
+PWM Ports
+Port	Device			Description
+-----------------------------------------------------------------------------------
+
+
+PCM 0 Ports
+Port	Device blk-pos	Description
+-----------------------------------------------------------------------------------
+0		ValveDA 1		A side is extend pickup.
+1		ValveDA 1		B side is retract pickup.
+2       ValveDA 2       A side is extend auxilliary climber arm.
+3       ValveDA 2       B side is retract auxilliary climber arm.
+4       ValveDA 3       A side is extend main climber arm.
+5       ValveDA 3       B side is retract main climber arm.
+       
+
+PCM 1 Ports
+Port	Device blk-pos	Description
+-----------------------------------------------------------------------------------
+
+
+Digital I/O Ports
+Port	Device			Description
+-----------------------------------------------------------------------------------
+0       Climber Switch  Limit switch on bottom of climber.
+1       Ball Switch     Ball loaded detect limit switch.
+
+
+Analog I/O Ports
+Port	Device			Description
+-----------------------------------------------------------------------------------
+0       Analog Gyro     Not a real gyro, slot 0 used by the simulation gyro.
+1		Pressure Sensor	Report air pressure.
+2       Light Sensor    Detect ball crossing intake.
+
+
+Left Joystick
+Button Name				Function
+-----------------------------------------------------------------------------------
+Y Axis					Forward/Backward tank driving.
+
+
+Right Joystick
+Button Name				Function
+-----------------------------------------------------------------------------------
+TRIGGER					Enable alternate driving mode.
+Y Axis					Forward/Backward tank driving.
+
+
+Utility Joystick
+Button Name				Function
+-----------------------------------------------------------------------------------
+TRIGGER                 Shoot ball.
+TOP_MIDDLE				Shooter motor toggle (PID).
+TOP_BACK				Extend/retract pickup with motor.
+TOP_LEFT				Manual channel ball toward shooter.
+TO_RIGHT				Manual channel ball toward pickup.
+
+
+LaunchPad
+Button Name				Function
+-----------------------------------------------------------------------------------
+BUTTON_GREEN            Reset Odometer.
+BUTTON_RED				Reset wheel encoders in teleop.
+BUTTON_RED_RIGHT        Toggle shooter target RPM high/low.
+BUTTON_YELLOW           Toggle extend of main climber arm.
+BUTON_BLUE_RIGHT        Toggle extend of auxillariy climber arm.
+
+ROCKER_LEFT_FRONT		Switch Cameras.
+ROCKER_LEFT_BACK		Toggle drive talon brake mode. 
+
+
+Driver GamePad 
+Button Name				Function
+-----------------------------------------------------------------------------------
+LEFT_Y Axis				Forward/Backward tank driving.
+RIGHT_TRIGGER			Enable alternate driving mode.
+RIGHT_Y Axis			Forward/Backward tank driving.
+BUTTON_BACK             Reset Odometer.
+BUTTON_START			Reset wheel encoders in teleop.
+LEFT_BUMBER        		Switch Cameras.
+RIGHT_BUMPER    		Toggle drive talon brake mode. 
+POV_90                  Switch DS tab.
+
+
+Utility GamePad
+Button Name				Function
+-----------------------------------------------------------------------------------
+RIGHT_Y Axis            Climber Up/Down.
+RIGHT_TRIGGER           Shoot ball.
+RIGHT_BUMPER			Shooter motor toggle (PID).
+LEFT_BUMBER				Extend/retract pickup with motor.
+POV_0   				Toggle Manual channel ball toward shooter.
+POV_180 				Toggle Manual channel ball toward pickup.
+BUTTON_Y                Toggle shooter target RPM high/low.
+BUTTON_X                Toggle extend of main climber arm.
+BUTTON_B                Toggle extend of auxillariy climber arm.
+
+Dashboard Indicators/Controls
+Name					Type			Description
+-----------------------------------------------------------------------------------
+AutoTarget				boolean			True when targeting code is running.
+TargetLocked			boolean			True when targeting completed with target
+                                        detected.
+Disabled				boolean			True when robot is disabled.
+Auto Mode				boolean			True when robot is in autonomous mode.
+Teleop Mode				boolean			True when robot is in teleop mode.
+FMS						boolean			True when robot is connected to the FMS.
+SteeringAssist			boolean			True when steering assist is active.
+AirPressure				Number			Is set to the current air pressure in psi.
+Brakes					boolean			True when drive Talons are in brake mode.
+AltDriveMode			boolean			True when alternate drive mode is enabled.
+Low Battery				boolean			True when battery is low.
+Overload				boolean			True when brownout has occurred.
+Auto Program            Chooser         List of autonomous programs.
+
+Pickup					boolean			True when pickup motor is running.
+PickupExtended			boolean			True when pickup is extended.
+Shooter					boolean			True when shooter motor is running.
+ShooterHighRPM          boolean         True when shooter set to high RPM.
+ShooterFeed				boolean			True when shooter feed motor is running.
+Brake					boolean			True when climber brake is engaged.
+Start Position          Chooser         List of robot starting positions.
+Main Extended           boolean         True if climber main arm is extended.
+Aux extended            boolean         True if climber aux arm is extended.
+
+Drive Base gearbox ratios: 11:60, 26:30, 22:44  yields 12.6:1 overall for 9.28 f/s or 3 m/s.
+
+CAN Bus Map:
+
+Roborio
+LR Drive Motor Talon
+LF Drive Motor Talon
+Shooter TalonFX
+PCM
+Pickup CanVictor
+Pickup CanVictor
+Indexer CanVictor
+RF Drive Motor Talon
+RR Drive Motor Talon
+Climber CanVictor
+Climber CanVictor
+PDB

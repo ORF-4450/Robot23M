@@ -1,0 +1,43 @@
+{
+  "NTProvider": {
+    "types": {
+      "/FMSInfo": "FMSInfo",
+      "/SmartDashboard/Auto Program": "String Chooser",
+      "/SmartDashboard/Field": "Field2d",
+      "/SmartDashboard/Gyro2": "Gyro",
+      "/SmartDashboard/Start Position": "String Chooser"
+    },
+    "windows": {
+      "/SmartDashboard/Auto Program": {
+        "window": {
+          "visible": true
+        }
+      },
+      "/SmartDashboard/Field": {
+        "window": {
+          "visible": true
+        }
+      },
+      "/SmartDashboard/Gyro2": {
+        "window": {
+          "visible": true
+        }
+      },
+      "/SmartDashboard/Start Position": {
+        "window": {
+          "visible": true
+        }
+      }
+    }
+  },
+  "NetworkTables": {
+    "transitory": {
+      "SmartDashboard": {
+        "Gyro2": {
+          "open": true
+        },
+        "open": true
+      }
+    }
+  }
+}
