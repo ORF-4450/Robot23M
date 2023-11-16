@@ -59,9 +59,11 @@ public class ShuffleBoard extends SubsystemBase
                       RobotContainer.driveBase.getLeftEncoder(), 
                       RobotContainer.driveBase.getRightEncoder());			
                 
-        LCD.printLine(LCD_4, "utilRY=%.3f  utilRX=%.3f",
-                      RobotContainer.utilityPad.getRightYDS().getAsDouble(), 
-                      RobotContainer.utilityPad.getRightX());
+        LCD.printLine(LCD_4, "utilLY=%.3f  utilLX=%.3f - utilRY=%.3f  utilRX=%.3f",
+                        RobotContainer.utilityPad.getLeftYDS().getAsDouble(), 
+                        RobotContainer.utilityPad.getLeftX(),
+                        RobotContainer.utilityPad.getRightYDS().getAsDouble(), 
+                        RobotContainer.utilityPad.getRightX());
     
         LCD.printLine(LCD_7, "Lrpm=%d - Rrpm=%d  Lmax vel=%.3f - Rmax vel=%.3f", 
                       RobotContainer.driveBase.leftEncoder.getRPM(),

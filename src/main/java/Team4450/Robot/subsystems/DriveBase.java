@@ -94,11 +94,10 @@ public class DriveBase extends SubsystemBase
 		// These inversions don't work under simulation due to how inversion works on a real
 		// CanTalon. See code in simulationPeriodic for more on inversion handling.
 
-		LFCanTalon.setInverted(false);
-		LRCanTalon.setInverted(false);
-		   
-		RFCanTalon.setInverted(true);
-		RRCanTalon.setInverted(true);
+		LFCanTalon.setInverted(true);
+		LRCanTalon.setInverted(true);		   
+		RFCanTalon.setInverted(false);
+		RRCanTalon.setInverted(false);
 		
 		// Configure SRX encoders as needed for measuring velocity and distance. 
 		// Wheel diameter is in inches. Adjust for each years robot.

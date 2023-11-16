@@ -8,7 +8,9 @@ import java.nio.file.Path;
 
 import Team4450.Lib.CameraFeed;
 import Team4450.Lib.XboxController;
+import Team4450.Robot.commands.DriveArm;
 import Team4450.Robot.commands.TankDrive;
+import Team4450.Robot.subsystems.Arm;
 import Team4450.Robot.subsystems.DriveBase;
 import Team4450.Robot.subsystems.ShuffleBoard;
 import Team4450.Lib.MonitorPDP;
@@ -39,6 +41,7 @@ public class RobotContainer
 
 	public static ShuffleBoard	shuffleBoard;
 	public static DriveBase 	driveBase;
+	public static Arm			arm0, arm1;
 
 	// Subsystem Default Commands.
 
@@ -144,14 +147,12 @@ public class RobotContainer
 	  
 		driverPad.invertY(true);
 		
-		// Set climber joystick dead zone to reduce twitchyness.
-	
-		utilityPad.deadZone(.50);
-
 		// Create subsystems prior to button mapping.
 
 		shuffleBoard = new ShuffleBoard();
 		driveBase = new DriveBase();
+		arm0 = new Arm(0);
+		arm1 = new Arm(1);
 
 		// Create any persistent commands.
 
@@ -176,6 +177,10 @@ public class RobotContainer
         //                                                             () -> rightStick.GetX(),
         //                                                             () -> rightStick.getJoyStick().getTrigger()));
 		   
+		arm0.setDefaultCommand(new DriveArm(arm0, () -> utilityPad.getRightY(), utilityPad));
+		   
+		arm1.setDefaultCommand(new DriveArm(arm1, () -> utilityPad.getLeftY(), utilityPad));
+
 		// Start the PDP and camera feed monitoring Tasks.
 		
    		monitorPDPThread = MonitorPDP.getInstance(pdp);
@@ -237,8 +242,6 @@ public class RobotContainer
 		new Trigger(() -> driverPad.getPOVAngle(90))
 			.onTrue(new InstantCommand(shuffleBoard::switchTab));
  
-		// -------- Utility pad buttons ----------
-
         // Reset odometer.
 		new Trigger(() -> driverPad.getBackButton())
     		.onTrue(new InstantCommand(driveBase::zeroOdometer));
@@ -254,6 +257,8 @@ public class RobotContainer
 		// Toggle camera feeds. 
 		new Trigger(() -> driverPad.getLeftBumper())
     		.onTrue(new InstantCommand(cameraFeed::ChangeCamera));
+
+		// -------- Utility pad buttons ----------
 	}
 
 	/**
