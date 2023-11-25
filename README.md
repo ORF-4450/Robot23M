@@ -1,9 +1,10 @@
 ### Robot23M
 ----------------------------------------------------------------------------
-FRC Team 4450 2023 Robot Control program (Tank Drive) Monster version.
+FRC Team 4450 2023 Robot Control program, Monster version.
 
 This is the theatre monster robot control program by the Olympia Robotics Federation (FRC Team 4450). 
 
+This code is based on Robot23B2, meaning it is the 2022 Tank Drive program updated to 2023 WPILib.
 ----------------------------------------------------------------------------
 ## Instructions to setup development environment for VS Code
 1) Follow the instructions [here](https://wpilib.screenstepslive.com/s/currentCS/m/java) to setup the JDK, Visual Studio Code, the FRC plugins and tools. Do not install the C++ portion. You do not need the FRC Update Suite to compile code.
