@@ -18,7 +18,7 @@ import edu.wpi.first.wpilibj.DriverStation;
  */
 public final class Constants
 {
-	public static String		PROGRAM_NAME = "ORF23M-11.15.23-1";
+	public static String		PROGRAM_NAME = "ORF23M-12.19.23-1";
 
 	public static Robot			robot;
 
@@ -39,14 +39,11 @@ public final class Constants
 	public static final int		DRIVER_PAD = 0, UTILITY_PAD = 1;
 
 	// Pneumatic valve controller port assignments.
-	public static final int		COMPRESSOR = 0;
-	//public static final int		PICKUP_VALVE = 0;			// 0-1
-
+	
 	// Digital Input port assignments. Encoder takes 2 ports.
 	  
 	// Analog Input port assignments.
-    public static final int		PRESSURE_SENSOR = 1;
-
+    
     public static final double	TALON_RAMP_RATE = 1.0;			// Takes 1 sec for full power to be applied.
                                                                 // Tried going above 1.0 but behavior became
                                                                 // sketchy...

@@ -7,12 +7,6 @@ Port	Device			Description
 2		CanTalon		Left rear drive motor.
 3		CanTalon		Right front drive motor.
 4		CanTalon		Right rear drive motor.
-5       CanVictor       Lower pickup motor.
-6       CanVictor       Upper pickup motor.
-7       CanVictor       Indexer motor.
-8       CanVictor       Left climber motor.
-9       CanTalon        Right climber motor.
-10      CanTalon    
 
 
 Shooter motor.
@@ -26,12 +20,6 @@ Port	Device			Description
 PCM 0 Ports
 Port	Device blk-pos	Description
 -----------------------------------------------------------------------------------
-0		ValveDA 1		A side is extend pickup.
-1		ValveDA 1		B side is retract pickup.
-2       ValveDA 2       A side is extend auxilliary climber arm.
-3       ValveDA 2       B side is retract auxilliary climber arm.
-4       ValveDA 3       A side is extend main climber arm.
-5       ValveDA 3       B side is retract main climber arm.
        
 
 PCM 1 Ports
@@ -42,16 +30,11 @@ Port	Device blk-pos	Description
 Digital I/O Ports
 Port	Device			Description
 -----------------------------------------------------------------------------------
-0       Climber Switch  Limit switch on bottom of climber.
-1       Ball Switch     Ball loaded detect limit switch.
 
 
 Analog I/O Ports
 Port	Device			Description
 -----------------------------------------------------------------------------------
-0       Analog Gyro     Not a real gyro, slot 0 used by the simulation gyro.
-1		Pressure Sensor	Report air pressure.
-2       Light Sensor    Detect ball crossing intake.
 
 
 Left Joystick
@@ -70,31 +53,12 @@ Y Axis					Forward/Backward tank driving.
 Utility Joystick
 Button Name				Function
 -----------------------------------------------------------------------------------
-TRIGGER                 Shoot ball.
-TOP_MIDDLE				Shooter motor toggle (PID).
-TOP_BACK				Extend/retract pickup with motor.
-TOP_LEFT				Manual channel ball toward shooter.
-TO_RIGHT				Manual channel ball toward pickup.
-
-
-LaunchPad
-Button Name				Function
------------------------------------------------------------------------------------
-BUTTON_GREEN            Reset Odometer.
-BUTTON_RED				Reset wheel encoders in teleop.
-BUTTON_RED_RIGHT        Toggle shooter target RPM high/low.
-BUTTON_YELLOW           Toggle extend of main climber arm.
-BUTON_BLUE_RIGHT        Toggle extend of auxillariy climber arm.
-
-ROCKER_LEFT_FRONT		Switch Cameras.
-ROCKER_LEFT_BACK		Toggle drive talon brake mode. 
 
 
 Driver GamePad 
 Button Name				Function
 -----------------------------------------------------------------------------------
 LEFT_Y Axis				Forward/Backward tank driving.
-RIGHT_TRIGGER			Enable alternate driving mode.
 RIGHT_Y Axis			Forward/Backward tank driving.
 BUTTON_BACK             Reset Odometer.
 BUTTON_START			Reset wheel encoders in teleop.

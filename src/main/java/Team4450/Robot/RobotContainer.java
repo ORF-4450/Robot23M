@@ -3,12 +3,12 @@ package Team4450.Robot;
 
 import static Team4450.Robot.Constants.*;
 
-import java.io.IOException;
-import java.nio.file.Path;
+import java.util.ArrayList;
 
 import Team4450.Lib.CameraFeed;
 import Team4450.Lib.XboxController;
 import Team4450.Robot.commands.DriveArm;
+import Team4450.Robot.commands.RunArms;
 import Team4450.Robot.commands.TankDrive;
 import Team4450.Robot.subsystems.Arm;
 import Team4450.Robot.subsystems.DriveBase;
@@ -17,14 +17,10 @@ import Team4450.Lib.MonitorPDP;
 import Team4450.Lib.NavX;
 import Team4450.Lib.Util;
 import edu.wpi.first.wpilibj.DriverStation;
-import edu.wpi.first.wpilibj.Filesystem;
-import edu.wpi.first.wpilibj.PneumaticsControlModule;
 import edu.wpi.first.wpilibj.PowerDistribution;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.util.sendable.SendableRegistry;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import edu.wpi.first.math.trajectory.Trajectory;
-import edu.wpi.first.math.trajectory.TrajectoryUtil;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
@@ -39,14 +35,13 @@ public class RobotContainer
 {
 	// Subsystems.
 
-	public static ShuffleBoard	shuffleBoard;
-	public static DriveBase 	driveBase;
-	public static Arm			arm0, arm1;
+	public static ShuffleBoard		shuffleBoard;
+	public static DriveBase 		driveBase;
+	public static ArrayList<Arm>	arms = new ArrayList<Arm>();			
 
 	// Subsystem Default Commands.
 
 	private final TankDrive		driveCommand;
-	//private final ArcadeDrive	driveCommand;
 
     // Persistent Commands.
 
@@ -71,30 +66,20 @@ public class RobotContainer
 	private XboxController			driverPad =  new XboxController(DRIVER_PAD);
 	public static XboxController	utilityPad = new XboxController(UTILITY_PAD);
 
-	//private AnalogInput			pressureSensor = new AnalogInput(PRESSURE_SENSOR);
-	  
 	private PowerDistribution	pdp = new PowerDistribution(0, PowerDistribution.ModuleType.kCTRE);
-
-	// PneumaticsControlModule class controls the PCM. New for 2022.
-	private PneumaticsControlModule	pcm = new PneumaticsControlModule(COMPRESSOR);
 
 	// Navigation board.
 	public static NavX			navx;
 
 	private Thread      		monitorPDPThread;
-	//private MonitorCompressor	monitorCompressorThread;
     private CameraFeed			cameraFeed;
     
-	// Trajecotries.
-    //public static Trajectory    ;
-
     // List of autonomous programs. Any change here must be reflected in getAutonomousCommand()
     // and setAutoChoices() which appear later in this class.
 	private enum AutoProgram
 	{
 		NoProgram;
-		//DriveOut,
-		//ShootFirst
+		//DriveOut
 	}
 
 	// Classes to access drop down lists on Driver Station.
@@ -151,8 +136,12 @@ public class RobotContainer
 
 		shuffleBoard = new ShuffleBoard();
 		driveBase = new DriveBase();
-		arm0 = new Arm(0);
-		arm1 = new Arm(1);
+
+		arms.add(new Arm(0));
+		arms.add(new Arm(1));
+		arms.add(new Arm(2));
+		arms.add(new Arm(3));
+		arms.add(new Arm(4));
 
 		// Create any persistent commands.
 
@@ -177,9 +166,9 @@ public class RobotContainer
         //                                                             () -> rightStick.GetX(),
         //                                                             () -> rightStick.getJoyStick().getTrigger()));
 		   
-		arm0.setDefaultCommand(new DriveArm(arm0, () -> utilityPad.getRightY(), utilityPad));
+		arms.get(0).setDefaultCommand(new DriveArm(arms.get(0), () -> utilityPad.getRightY()));
 		   
-		arm1.setDefaultCommand(new DriveArm(arm1, () -> utilityPad.getLeftY(), utilityPad));
+		arms.get(1).setDefaultCommand(new DriveArm(arms.get(1), () -> utilityPad.getLeftY()));
 
 		// Start the PDP and camera feed monitoring Tasks.
 		
@@ -258,6 +247,9 @@ public class RobotContainer
 		new Trigger(() -> driverPad.getLeftBumper())
     		.onTrue(new InstantCommand(cameraFeed::ChangeCamera));
 
+		// Start or stop (if already in progress), the command to position for feeder pickup.
+		new Trigger(() -> utilityPad.getXButton()).toggleOnTrue(new RunArms(arms));
+		
 		// -------- Utility pad buttons ----------
 	}
 
@@ -338,33 +330,6 @@ public class RobotContainer
 		// 	pcm.disableCompressor();
 		
 		pdp.clearStickyFaults();
-		pcm.clearAllStickyFaults();
+		//pcm.clearAllStickyFaults();
     }
-         
-    /**
-     * Loads a Pathweaver path file into a trajectory.
-     * @param fileName Name of file. Will automatically look in deploy directory.
-     * @return The path's trajectory.
-     */
-    public static Trajectory loadTrajectoryFile(String fileName)
-    {
-        Trajectory  trajectory;
-        Path        trajectoryFilePath;
-
-        try 
-        {
-          trajectoryFilePath = Filesystem.getDeployDirectory().toPath().resolve("paths/" + fileName);
-
-          Util.consoleLog("loading trajectory: %s", trajectoryFilePath);
-          
-          trajectory = TrajectoryUtil.fromPathweaverJson(trajectoryFilePath);
-        } catch (IOException ex) {
-          throw new RuntimeException("Unable to open trajectory: " + ex.toString());
-        }
-
-        Util.consoleLog("trajectory loaded: %s", fileName);
-
-        return trajectory;
-    }
-
 }
