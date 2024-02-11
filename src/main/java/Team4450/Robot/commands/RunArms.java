@@ -5,48 +5,45 @@ import Team4450.Lib.Util;
 import Team4450.Robot.subsystems.Arm;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 
-public class RunArms extends CommandBase 
-{
-    private final ArrayList<Arm> arms;
+public class RunArms extends CommandBase {
+	private final ArrayList<Arm> arms;
 
-    public RunArms(ArrayList<Arm> arms)
-    {
-        Util.consoleLog();
+	public RunArms(ArrayList<Arm> arms) {
+		Util.consoleLog();
 
-        this.arms = arms;
+		this.arms = arms;
 
-        for (Arm arm : arms) addRequirements(arm);
-    }
+		for (Arm arm : arms)
+			addRequirements(arm);
+	}
 
-    @Override
-    public void initialize()
-    {
-        Util.consoleLog();
-    }
-    
-    @Override
-    public void execute()
-    {
-        double power = .25;
+	@Override
+	public void initialize() {
+		Util.consoleLog();
+	}
 
-        for (Arm arm : arms) arm.setMotorPower(power);
-    }
+	@Override
+	public void execute() {
+		double power = .25;
 
-    @Override
-    public void end(boolean interrupted) 
-    {
-        Util.consoleLog("interrupted=%b", interrupted);
+		for (Arm arm : arms)
+			arm.setMotorPower(power);
+	}
 
-        for (Arm arm : arms) arm.stopMotor();
-    }
+	@Override
+	public void end(boolean interrupted) {
+		Util.consoleLog("interrupted=%b", interrupted);
 
-  /**
-   *  Returns true when the command should end. Returning false means it never ends.
-   */
-  @Override
-  public boolean isFinished() 
-  {
-	    return false;
-  }
+		for (Arm arm : arms)
+			arm.stopMotor();
+	}
+
+	/**
+	 * Returns true when the command should end. Returning false means it never
+	 * ends.
+	 */
+	@Override
+	public boolean isFinished() {
+		return false;
+	}
 }
-

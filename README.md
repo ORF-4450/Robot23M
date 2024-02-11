@@ -2,7 +2,7 @@
 ----------------------------------------------------------------------------
 FRC Team 4450 2023 Robot Control program, Monster version.
 
-This is the theatre monster robot control program by the Olympia Robotics Federation (FRC Team 4450). 
+This is the theatre monster robot control program by the Olympia Robotics Federation (FRC Team 4450).
 
 This code is based on Robot23B2, meaning it is the 2022 Tank Drive program updated to 2023 WPILib.
 ----------------------------------------------------------------------------
