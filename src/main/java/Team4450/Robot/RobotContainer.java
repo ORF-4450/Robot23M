@@ -238,8 +238,9 @@ public class RobotContainer {
 		// are ready to
 		// use the trajectory. See Robot22B2 for example of how to do this.
 
-		candle.setColor(Color.kBlue);
-		// candle.setAnimation(AnimationTypes.Rainbow);
+		candle.setLeds(27, 127, 200);
+		//candle.setColor(Color.kBlue);
+		//candle.setAnimation(Candle.AnimationTypes.ColorFlow);
 	}
 
 	/**

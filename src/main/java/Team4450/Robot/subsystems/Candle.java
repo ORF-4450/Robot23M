@@ -120,6 +120,8 @@ public class Candle extends SubsystemBase {
 	 *            Blue color value 0-255.
 	 */
 	public void setLeds(int red, int green, int blue) {
+		Util.consoleLog("%d %d %d", red, green, blue);
+
 		candle.setLEDs(red, green, blue);
 	}
 
@@ -130,7 +132,7 @@ public class Candle extends SubsystemBase {
 	 *            WPILib color value.
 	 */
 	public void setColor(Color color) {
-		setLeds((int) color.red, (int) color.blue, (int) color.green);
+		setLeds((int) color.red, (int) color.green, (int) color.blue);
 	}
 
 	/**
